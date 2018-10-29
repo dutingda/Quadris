@@ -1,0 +1,44 @@
+Usage of the command interpreter. Command syntax:
+
+  command = !! | definable
+
+  definable = primitive | macro | macroDefinition | (rep)(definable) | partial
+
+  primitive = left | right | down
+            | clockwise | counterlcockwise
+            | drop
+            | levelup | leveldown
+            | random | norandom fileName
+            | sequence fileName
+            | blockShape
+            | restart
+            | hint
+            | help
+            | disp
+
+  blockShape = I | J | O | L | S | Z | T
+
+  macroDefinition = def macroName definable...
+
+where
+  !! - Runs the previously successfully executed command
+  macro - A string str is a valid macro if it was previously defined using the command
+          "def str definable..."
+  (rep)(definable) - Repeats the execution of a definable rep number of times
+  partial - Partial beginning of a string. Command interpreter executes command as soon as an unique
+            definable starting with the same sequence of characters is found
+
+For primitive commands:
+  left, right, down - Moves current block in corresponding direction 1 unit
+  clockwise, counterclockwise - Rotates current block in the corresponding direction
+  drop - Drops the current block
+  levelup, leveldown - Increases/decreases difficulty
+  blockShape - Changes the shape of the current block to the one specified in the command
+  random - Enables randomisation for levels 3 and 4. Enabled by default
+  norandom fileName - Disables randomisation for levels 3 and 4. Loads blocks from fileName as specified
+  sequence fileName - Executes sequence of commands found in fileName
+  restart - Clears current score and board. Restarts game
+  hint - Obtains a hint that the user can place the block. Hint algorithm: generate a location where
+         placing the current block would result in the minimum overall height.
+  help - Shows this help message
+  disp - Prints the current board.
